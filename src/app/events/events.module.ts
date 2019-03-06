@@ -1,3 +1,4 @@
+import { SessionListComponent } from './event-detail/session-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from "@angular/core";
 import { EventDetailComponent } from "./event-detail/event-detail.component";
@@ -21,7 +22,8 @@ import { CreateSessionComponent } from './create-session/create-session.componen
     EventsListComponent,
     CreateEventsComponent,
     EventThumbnailComponent,
-    CreateSessionComponent
+    CreateSessionComponent,
+    SessionListComponent
   ]
 })
 export class EventsModule {}
