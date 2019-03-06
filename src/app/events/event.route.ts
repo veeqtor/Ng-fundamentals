@@ -1,3 +1,4 @@
+import { CreateSessionComponent } from "./create-session/create-session.component";
 import { Routes } from "@angular/router";
 import { CreateEventsComponent } from "./create-events/create-events.component";
 import { EventsListComponent } from "./event-list/event-list.component";
@@ -10,6 +11,10 @@ export const eventRoutes: Routes = [
     path: "events/new",
     component: CreateEventsComponent,
     canDeactivate: ["CanDeactivateCreateEvent"]
+  },
+  {
+    path: "events/session/new",
+    component: CreateSessionComponent
   },
   {
     // Pre-loading data for components
