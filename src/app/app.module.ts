@@ -1,4 +1,3 @@
-import { RouterModule } from '@angular/router';
 import { CreateEventsComponent } from "./events/create-events/create-events.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -6,7 +5,11 @@ import { EventsAppComponent } from "./events-app.component";
 import { NavbarComponent } from "./nav/navbar.component";
 import { Error404Component } from "./errors/errors.component";
 import { EventsModule } from "./events/events.module";
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from "./app-routing.module";
+import { TOASTER_TOKEN, Toastr } from "./common/toastr.service";
+
+// declare let toastr: any;
+let toastr: Toastr = window["toastr"];
 
 export const checkDirtyState = (component: CreateEventsComponent) => {
   if (component.isDirty)
@@ -15,19 +18,15 @@ export const checkDirtyState = (component: CreateEventsComponent) => {
 };
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    EventsModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, EventsModule, AppRoutingModule],
 
-  declarations: [
-    EventsAppComponent,
-    NavbarComponent,
-    Error404Component
-  ],
+  declarations: [EventsAppComponent, NavbarComponent, Error404Component],
 
   providers: [
+    {
+      provide: TOASTER_TOKEN,
+      useValue: toastr
+    },
     {
       provide: "CanDeactivateCreateEvent",
       useValue: checkDirtyState
