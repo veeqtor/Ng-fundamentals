@@ -1,12 +1,14 @@
+import { VotersService } from "./../upvotes/voters.service";
 import { Component, OnInit, Input, OnChanges } from "@angular/core";
 import { ISession } from "../shared/event.model";
+import { AuthService } from "src/app/user/auth.service";
 
 @Component({
   selector: "session-list",
   templateUrl: "./session-list.component.html"
 })
 export class SessionListComponent implements OnInit, OnChanges {
-  constructor() {}
+  constructor(private auth: AuthService, private voterService: VotersService) {}
 
   @Input() sessions: ISession[];
   @Input() filterBy: string;
@@ -31,6 +33,21 @@ export class SessionListComponent implements OnInit, OnChanges {
       this.visibleSessions = this.sessions.filter(sessions => {
         return sessions.level.toLocaleLowerCase() === filter;
       });
+    }
+  }
+
+  userHasVoted(session: ISession) {
+    return this.voterService.userHasVoted(session, this.auth.currentUser.userName);
+  }
+
+  toggleVote(session: ISession) {
+    if (this.userHasVoted(session)) {
+      this.voterService.deleteVoter(session, this.auth.currentUser.userName);
+    } else {
+      this.voterService.addVoter(session, this.auth.currentUser.userName);
+    }
+    if (this.sortBy === "votes") {
+      this.visibleSessions.sort(sortByVoteDesc);
     }
   }
 }

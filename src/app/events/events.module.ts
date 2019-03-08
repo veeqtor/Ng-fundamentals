@@ -1,3 +1,4 @@
+import { LocationValidator } from './create-events/location-validator.directive';
 import { SessionListComponent } from "./event-detail/session-list.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
@@ -10,6 +11,8 @@ import { EventRouterModule } from "./event-routing.module";
 import { CreateSessionComponent } from "./create-session/create-session.component";
 import { CollapsibleWellComponent } from "../common/collapsible-well.component";
 import { DurationPipe } from "./shared/duration.pipe";
+import { UpvotesComponent } from "./upvotes/upvotes.component";
+import { VotersService } from "./upvotes/voters.service";
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, EventRouterModule],
@@ -22,7 +25,11 @@ import { DurationPipe } from "./shared/duration.pipe";
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
-  ]
+    DurationPipe,
+    UpvotesComponent,
+    LocationValidator
+  ],
+
+  providers: [VotersService]
 })
 export class EventsModule {}
