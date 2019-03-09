@@ -15,11 +15,11 @@ import { Component, OnInit } from "@angular/core";
   ]
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
   userName: string;
   password: string;
   mouseoverLogin: boolean;
-  loginInvalid: boolean = false;
+  loginInvalid = false;
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 

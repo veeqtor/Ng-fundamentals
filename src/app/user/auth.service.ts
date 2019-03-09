@@ -16,7 +16,7 @@ export class AuthService {
         "Content-Type": "application/json"
       })
     };
-    let loginInfo = {
+    const loginInfo = {
       username: userName,
       password: password
     };

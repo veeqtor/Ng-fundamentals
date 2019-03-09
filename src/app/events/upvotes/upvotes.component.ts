@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output } from "@angular/core";
+import { Component,EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
   selector: "upvotes",
@@ -12,6 +12,7 @@ export class UpvotesComponent implements OnInit {
     this.iconColor = val ? "red" : "white";
   }
   @Output() vote = new EventEmitter();
+
   constructor() {}
 
   ngOnInit() {}

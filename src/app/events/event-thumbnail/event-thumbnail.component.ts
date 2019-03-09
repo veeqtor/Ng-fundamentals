@@ -7,11 +7,11 @@ import { IEvent } from "../shared/event.model";
   styleUrls: ["./event-thumbnail.component.css"]
 })
 export class EventThumbnailComponent implements OnInit {
+
+  @Input() event: IEvent;
   constructor() {}
 
   ngOnInit() {}
-
-  @Input() event: IEvent;
 
   getStartStyle() {
     if (this.event && this.event.time === "8:00 am") {

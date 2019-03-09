@@ -23,7 +23,8 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a href="">Angular Connect</a>
+              <a [routerLink]="['/all_events']"
+                 routerLinkActive="active">Angular Connect</a>
             </li>
           </ul>
         </li>
@@ -36,7 +37,7 @@
                routerLinkActive="active">Login</a>
             <a *ngIf="auth.isAuthenticated()"
                [routerLink]="['user/profile']"
-               routerLinkActive="active">Welcome {{auth.currentUser.firstName}}</a>
+               routerLinkActive="active">Welcome {{ auth.currentUser.firstName }}</a>
           </li>
         </ul>
       </div>
@@ -64,6 +65,6 @@
   <div class="list-group">
     <a class="list-group-item"
        *ngFor="let session of foundSessions"
-       [routerLink]="['/events', session.eventId]">{{session.name}}</a>
+       [routerLink]="['/events', session.eventId]">{{ session.name }}</a>
   </div>
 </simple-modal>

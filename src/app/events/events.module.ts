@@ -1,15 +1,16 @@
-import { LocationValidator } from './create-events/location-validator.directive';
-import { SessionListComponent } from "./event-detail/session-list.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { NgModule } from "@angular/core";
-import { EventDetailComponent } from "./event-detail/event-detail.component";
-import { EventsListComponent } from "./event-list/event-list.component";
-import { CreateEventsComponent } from "./create-events/create-events.component";
-import { EventThumbnailComponent } from "./event-thumbnail/event-thumbnail.component";
 import { CommonModule } from "@angular/common";
-import { EventRouterModule } from "./event-routing.module";
-import { CreateSessionComponent } from "./create-session/create-session.component";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CollapsibleWellComponent } from "../common/collapsible-well.component";
+import { CreateEventsComponent } from "./create-events/create-events.component";
+import { LocationValidator } from "./create-events/location-validator.directive";
+import { CreateSessionComponent } from "./create-session/create-session.component";
+import { EventDetailComponent } from "./event-detail/event-detail.component";
+import { SessionListComponent } from "./event-detail/session-list.component";
+import { EventsListComponent } from "./event-list/event-list.component";
+import { EventRouterModule } from "./event-routing.module";
+import { EventThumbnailComponent } from "./event-thumbnail/event-thumbnail.component";
+import { EventsAllComponent } from "./events-all/events-all.component";
 import { DurationPipe } from "./shared/duration.pipe";
 import { UpvotesComponent } from "./upvotes/upvotes.component";
 import { VotersService } from "./upvotes/voters.service";
@@ -27,7 +28,8 @@ import { VotersService } from "./upvotes/voters.service";
     CollapsibleWellComponent,
     DurationPipe,
     UpvotesComponent,
-    LocationValidator
+    LocationValidator,
+    EventsAllComponent
   ],
 
   providers: [VotersService]

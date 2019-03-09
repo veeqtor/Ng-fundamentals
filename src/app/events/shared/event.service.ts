@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { IEvent, ISession } from "./event.model";
 import { Observable, of } from "rxjs";
 import { catchError } from "rxjs/operators";
+
+import { IEvent, ISession } from "./event.model";
 
 @Injectable({
   providedIn: "root"
@@ -22,7 +23,7 @@ export class EventService {
   }
 
   saveEvent(event: IEvent) {
-    let options = {
+    const options = {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })
@@ -41,7 +42,7 @@ export class EventService {
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
-      return of(result as T);
+      return of(<T>result);
     };
   }
 }

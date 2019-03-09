@@ -1,0 +1,11 @@
+<div>
+  <h1>All Events</h1>
+  <hr />
+  <div class="row">
+    <div *ngFor="let event of allEvents"
+         class="col-md-5">
+      <event-thumbnail [event]="event"></event-thumbnail>
+    </div>
+  </div>
+
+</div>

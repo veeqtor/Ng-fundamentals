@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ISession } from "../shared/event.model";
 import { Observable, of } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { ISession } from "../shared/event.model";
 
 @Injectable()
 export class VotersService {
@@ -39,7 +39,7 @@ export class VotersService {
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
-      return of(result as T);
+      return of(<T>result);
     };
   }
 }

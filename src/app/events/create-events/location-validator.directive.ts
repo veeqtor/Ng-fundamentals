@@ -16,10 +16,10 @@ export class LocationValidator implements Validator {
   constructor() {}
 
   validate(formGroup: FormGroup): { [key: string]: any } {
-    let addressControl = formGroup.controls["address"];
-    let cityControl = formGroup.controls["city"];
-    let countryControl = formGroup.controls["country"];
-    let onlineURLControl = (<FormGroup>formGroup.root).controls["onlineURL"];
+    const addressControl = formGroup.controls["address"];
+    const cityControl = formGroup.controls["city"];
+    const countryControl = formGroup.controls["country"];
+    const onlineURLControl = (<FormGroup>formGroup.root).controls["onlineURL"];
 
     if (
       (addressControl &&
@@ -31,8 +31,8 @@ export class LocationValidator implements Validator {
       (onlineURLControl && onlineURLControl.value)
     ) {
       return null;
-    } else {
-      return { validateLocation: false };
-    }
+    } 
+    return { validateLocation: false };
+    
   }
 }

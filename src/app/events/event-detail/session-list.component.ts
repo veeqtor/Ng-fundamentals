@@ -1,23 +1,35 @@
-import { VotersService } from "./../upvotes/voters.service";
 import { Component, OnInit, Input, OnChanges } from "@angular/core";
-import { ISession } from "../shared/event.model";
+
 import { AuthService } from "src/app/user/auth.service";
+
+import { VotersService } from "./../upvotes/voters.service";
+import { ISession } from "../shared/event.model";
+
+const sortByNameAsc = (s1: ISession, s2: ISession) => {
+  if (s1.name > s2.name) return 1;
+  if (s1.name === s2.name) return 0;
+  return -1;
+};
+
+const sortByVoteDesc = (s1: ISession, s2: ISession) => {
+  return s2.voters.length - s1.voters.length;
+};
 
 @Component({
   selector: "session-list",
   templateUrl: "./session-list.component.html"
 })
 export class SessionListComponent implements OnInit, OnChanges {
-  constructor(private auth: AuthService, private voterService: VotersService) {}
-
   @Input() sessions: ISession[];
   @Input() filterBy: string;
   @Input() sortBy: string;
   @Input() eventId: number;
   visibleSessions: ISession[];
 
-  ngOnInit() {}
-  ngOnChanges() {
+  constructor(private auth: AuthService, private voterService: VotersService) {}
+
+  ngOnInit(): void {}
+  ngOnChanges(): void {
     if (this.sessions) {
       this.filterSessions(this.filterBy);
       this.sortBy === "name"
@@ -26,7 +38,7 @@ export class SessionListComponent implements OnInit, OnChanges {
     }
   }
 
-  filterSessions(filter: string) {
+  filterSessions(filter: string): void {
     if (filter === "all") {
       // cloning an array
       this.visibleSessions = this.sessions.slice(0);
@@ -37,16 +49,14 @@ export class SessionListComponent implements OnInit, OnChanges {
     }
   }
 
-  userHasVoted(session: ISession) {
+  userHasVoted(session: ISession): boolean {
     return this.voterService.userHasVoted(session, this.auth.currentUser.userName);
   }
 
-  toggleVote(session: ISession) {
+  toggleVote(session: ISession): void {
     if (this.userHasVoted(session)) {
-      console.log("DELETED VOTE");
       this.voterService.deleteVoter(this.eventId, session, this.auth.currentUser.userName);
     } else {
-      console.log("ADD VOTE");
       this.voterService.addVoter(this.eventId, session, this.auth.currentUser.userName);
     }
     if (this.sortBy === "votes") {
@@ -54,13 +64,3 @@ export class SessionListComponent implements OnInit, OnChanges {
     }
   }
 }
-
-const sortByNameAsc = (s1: ISession, s2: ISession) => {
-  if (s1.name > s2.name) return 1;
-  else if (s1.name === s2.name) return 0;
-  else return -1;
-};
-
-const sortByVoteDesc = (s1: ISession, s2: ISession) => {
-  return s2.voters.length - s1.voters.length;
-};

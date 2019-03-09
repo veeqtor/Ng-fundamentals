@@ -2,7 +2,7 @@ import { VotersService } from "./../upvotes/voters.service";
 import { AuthService } from "src/app/user/auth.service";
 import { SessionListComponent } from "./session-list.component";
 import { TestBed, async, ComponentFixture } from "@angular/core/testing";
-import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
+import { DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { UpvotesComponent } from "../upvotes/upvotes.component";
 import { DurationPipe } from "../shared/duration.pipe";
@@ -15,13 +15,13 @@ describe("SessionListComponent", () => {
     debugEl: DebugElement;
 
   beforeEach(async(() => {
-    let mockAuthService = {
+    const mockAuthService = {
       isAuthenticated: () => true,
       currentUser: {
         userName: "joe"
       }
     };
-    let mockVoterService = {
+    const mockVoterService = {
       userHasVoted: () => true
     };
 
