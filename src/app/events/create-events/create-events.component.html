@@ -111,8 +111,8 @@
              type="text"
              class="form-control"
              placeholder="url of image..." />
-      <img *ngIf="newEventForm.controls.imageUrl.valid"
-           [src]="newEventForm.controls.imageUrl.value" />
+      <img *ngIf="newEventForm.controls.imageUrl?.valid"
+           [src]="newEventForm.controls.imageUrl?.value" />
     </div>
 
     <button type="submit"

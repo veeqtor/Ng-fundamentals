@@ -8,7 +8,7 @@ import { EventsModule } from "./events/events.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { TOASTER_TOKEN, Toastr } from "./common/toastr.service";
 import { NavbarModule } from "./nav/navbar.module";
-
+import { HttpClientModule } from "@angular/common/http"
 // declare let toastr: any;
 let toastr: Toastr = window["toastr"];
 let jQuery = window["$"];
@@ -22,6 +22,7 @@ export const checkDirtyState = (component: CreateEventsComponent) => {
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     NavbarModule,
     EventsModule,
     AppRoutingModule

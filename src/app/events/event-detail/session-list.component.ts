@@ -13,6 +13,7 @@ export class SessionListComponent implements OnInit, OnChanges {
   @Input() sessions: ISession[];
   @Input() filterBy: string;
   @Input() sortBy: string;
+  @Input() eventId: number;
   visibleSessions: ISession[];
 
   ngOnInit() {}
@@ -42,9 +43,11 @@ export class SessionListComponent implements OnInit, OnChanges {
 
   toggleVote(session: ISession) {
     if (this.userHasVoted(session)) {
-      this.voterService.deleteVoter(session, this.auth.currentUser.userName);
+      console.log("DELETED VOTE");
+      this.voterService.deleteVoter(this.eventId, session, this.auth.currentUser.userName);
     } else {
-      this.voterService.addVoter(session, this.auth.currentUser.userName);
+      console.log("ADD VOTE");
+      this.voterService.addVoter(this.eventId, session, this.auth.currentUser.userName);
     }
     if (this.sortBy === "votes") {
       this.visibleSessions.sort(sortByVoteDesc);

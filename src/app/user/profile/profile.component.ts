@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 
 @Component({
   templateUrl: "./profile.component.html",
-  styleUrls: ['./profile.component.css']
+  styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
@@ -45,8 +45,17 @@ export class ProfileComponent implements OnInit {
 
   saveProfile(formValues: { firstName: string; lastName: string }) {
     if (this.profileForm.valid) {
-      this.authService.updateCurrentUser(formValues.firstName, formValues.lastName);
-      this.toastr.success("Profile Saved");
+      this.authService
+        .updateCurrentUser(formValues.firstName, formValues.lastName)
+        .subscribe(() => {
+          this.toastr.success("Profile Saved");
+        });
     }
+  }
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(["user/login"]);
+    });
   }
 }

@@ -60,7 +60,8 @@
          style="float: right">Add session</a>
     </div>
   </div>
-  <session-list [filterBy]='filterBy'
+  <session-list [eventId]="event?.id"
+                [filterBy]='filterBy'
                 [sortBy]='sortBy'
                 *ngIf="!addMode"
                 [sessions]="event?.sessions"></session-list>

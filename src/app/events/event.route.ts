@@ -4,7 +4,7 @@ import { CreateEventsComponent } from "./create-events/create-events.component";
 import { EventsListComponent } from "./event-list/event-list.component";
 import { EventListResolver } from "./shared/event-list-resolver.service";
 import { EventDetailComponent } from "./event-detail/event-detail.component";
-import { EventRouteActivator } from "./event-detail/event-route.activator";
+import { EventResolver } from "./shared/event-resolver.service";
 
 export const eventRoutes: Routes = [
   {
@@ -27,6 +27,8 @@ export const eventRoutes: Routes = [
   {
     path: "events/:id",
     component: EventDetailComponent,
-    canActivate: [EventRouteActivator]
+    resolve: {
+      event: EventResolver
+    }
   }
 ];
